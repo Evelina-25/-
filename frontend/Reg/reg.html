@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Регистрация</title>
+</head>
+<body>
+    <div class="wrapper">
+        <div class="wrapper-form">
+    <h1 class="title">Регистрация</h1>
+<form class="reg-form" autocomplete="off">
+    <input type="text" name="username" class="reg-input" placeholder="Имя" autocomplete="off">
+    <input type="password" name="password" class="reg-input" placeholder="Пароль" autocomplete="new-password">
+    <button type="submit" class="reg-sub">Регистрация</button>
+</form>
+
+<p class="auth-link">
+    Уже зарегистрированы? 
+</p>
+<div class="auth-link-block">
+    <a href="../Avt/avt.html" class="avt" target="_blank">Войти</a>
+</div>
+    </div>
+    </div>
+</body>
+<script>
+const form = document.querySelector(".reg-form");
+
+form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    const username = form.username.value;
+    const password = form.password.value;
+
+    try{
+
+        const response = await fetch("http://localhost:5000/api/auth/register", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                username: username,
+                password: password
+            })
+        });
+
+        const data = await response.json();
+
+if(response.ok){
+    alert("Пользователь создан");
+    console.log(data);
+
+   
+    window.location.href = "../Avt/avt.html";
+
+}else{
+    alert(data.message);
+}
+
+    }catch(error){
+        console.log(error);
+    }
+});
+</script>
+</html>
