@@ -65,6 +65,15 @@ async getAll(query){
     return Tour.find(filter);
 }
 
+async getOne(id) {
+
+    if (!id) {
+        throw new Error("Не указан ID тура");
+    }
+
+    return await Tour.findById(id);
+}
+
     async update(id, data){
 
         if(!id){
