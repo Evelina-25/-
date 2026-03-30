@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <title>Тур</title>
+</head>
+<body>
+  <h1 id="formTitle">Новый тур</h1>
+
+  <form id="tourForm">
+    <input type="text" name="name" placeholder="Название тура" required><br><br>
+
+    <input type="text" name="country" placeholder="Страна" required><br><br>
+
+    <input type="text" name="city" placeholder="Город"><br><br>
+
+    <input type="date" name="startDate" required><br><br>
+
+    <input type="number" name="durationDays" placeholder="Длительность (дней)" required><br><br>
+
+    <input type="number" name="price" placeholder="Цена" required><br><br>
+
+    <input type="number" name="availableSeats" placeholder="Количество мест" required><br><br>
+
+    <textarea name="description" placeholder="Описание тура"></textarea><br><br>
+
+    <button type="submit">Сохранить</button>
+    <button type="button" onclick="window.location.href='tours.html'">Отмена</button>
+  </form>
+
+  <script src="../tours/tour-form.js"></script>
+</body>
+</html>
