@@ -7,10 +7,14 @@
 <body>
   <h1>Панель менеджера</h1>
   <button id="clientsBtn">Клиенты</button>
-
+  <button id="toursBtn">Туры</button>
   <script>
     document.getElementById('clientsBtn').addEventListener('click', () => {
       window.location.href = 'Clients/clients.html';
+    });
+
+      document.getElementById('toursBtn').addEventListener('click', () => {
+      window.location.href = 'tours/tours.html';
     });
   </script>
 </body>
