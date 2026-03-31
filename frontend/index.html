@@ -2,12 +2,13 @@
 <html lang="ru">
 <head>
   <meta charset="UTF-8">
-  <title>Dashboard</title>
+  <title>Панель менеджера</title>
 </head>
 <body>
   <h1>Панель менеджера</h1>
   <button id="clientsBtn">Клиенты</button>
   <button id="toursBtn">Туры</button>
+  <button id="applicationsBtn">Заявки</button>
   <script>
     document.getElementById('clientsBtn').addEventListener('click', () => {
       window.location.href = 'Clients/clients.html';
@@ -15,6 +16,10 @@
 
       document.getElementById('toursBtn').addEventListener('click', () => {
       window.location.href = 'tours/tours.html';
+    });
+
+     document.getElementById('applicationsBtn').addEventListener('click', () => {
+      window.location.href = 'Application/applications.html';
     });
   </script>
 </body>
