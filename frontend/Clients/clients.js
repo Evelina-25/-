@@ -33,6 +33,9 @@ window.editClient = (id) => {
 }
 
 window.deleteClient = async (id) => {
+  const confirmDelete = confirm('Вы действительно хотите удалить клиента?');
+  if (!confirmDelete) return;
+  
   await fetch(`http://localhost:5000/api/clients/${id}`, {
     method: 'DELETE',
     headers: { Authorization: `Bearer ${token}` }
