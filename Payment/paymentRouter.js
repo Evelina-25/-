@@ -7,5 +7,5 @@ const router = new Router();
 router.post("/", authMiddleware, PaymentController.create);
 router.get("/", authMiddleware, PaymentController.getAll);
 router.get("/:id", authMiddleware, PaymentController.getOne);
-
+router.patch('/pay/:id', authMiddleware, PaymentController.pay);
 export default router;
