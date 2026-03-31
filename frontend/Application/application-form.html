@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Новая заявка</title>
+</head>
+<body>
+  <h1>Новая заявка</h1>
+
+  <form id="applicationForm">
+    <label>Клиент</label><br>
+    <select name="clientId" required id="clientSelect">
+      <option value="">Выберите клиента</option>
+    </select>
+    <br><br>
+
+    <label>Тур</label><br>
+    <select name="tourId" required id="tourSelect">
+      <option value="">Выберите тур</option>
+    </select>
+    <br><br>
+
+    <input type="number" name="peopleCount" placeholder="Количество человек" min="1" required>
+    <br><br>
+
+    <button type="submit">Сохранить</button>
+    <button type="button" onclick="window.location.href='applications.html'">Отмена</button>
+  </form>
+
+  <script src="../Application/application-form.js"></script>
+</body>
+</html>
