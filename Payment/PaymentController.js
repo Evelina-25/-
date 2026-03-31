@@ -38,6 +38,17 @@ class PaymentController {
         }
     }
 
+  async pay(req, res) {
+    try {
+      const payment = await PaymentService.create({
+        applicationId: req.params.id,
+        method: req.body.method || "cash" 
+      });
+      res.json(payment);
+    } catch(e) {
+      res.status(400).json({ message: e.message });
+    }
+  }
 }
 
 export default new PaymentController();
