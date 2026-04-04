@@ -1,5 +1,5 @@
 const token = localStorage.getItem('token');
-const toursTable = document.getElementById('toursTable');
+const toursContainer = document.getElementById('toursContainer');
 const addTourBtn = document.getElementById('addTourBtn');
 
 if (!token) {
@@ -25,27 +25,26 @@ async function fetchTours() {
       return;
     }
 
-    toursTable.innerHTML = '';
+    toursContainer.innerHTML = '';
 
     tours.forEach(tour => {
-      const row = document.createElement('tr');
+      const card = document.createElement('div');
 
-      row.innerHTML = `
-        <td>${tour.name}</td>
-        <td>${tour.country}</td>
-        <td>${tour.city || ''}</td>
-        <td>${tour.startDate ? tour.startDate.slice(0, 10) : ''}</td>
-        <td>${tour.durationDays}</td>
-        <td>${tour.price}</td>
-        <td>${tour.availableSeats}</td>
-        <td>${tour.description}</td>
-        <td>
-          <button onclick="editTour('${tour._id}')">Редактировать</button>
-          <button onclick="deleteTour('${tour._id}')">Удалить</button>
-        </td>
-      `;
+      card.innerHTML = `
+        <h3>${tour.name}</h3>
+        <p><strong>Страна:</strong> ${tour.country}</p>
+        <p><strong>Город:</strong> ${tour.city || ''}</p>
+        <p><strong>Дата начала:</strong> ${tour.startDate ? tour.startDate.slice(0, 10) : ''}</p>
+        <p><strong>Длительность:</strong> ${tour.durationDays}</p>
+        <p><strong>Цена:</strong> ${tour.price}</p>
+        <p><strong>Мест:</strong> ${tour.availableSeats}</p>
+        <p><strong>Описание:</strong> ${tour.description}</p>
+        <button onclick="editTour('${tour._id}')">Редактировать</button>
+        <button onclick="deleteTour('${tour._id}')">Удалить</button>
+        <hr>
+      `;      
 
-      toursTable.appendChild(row);
+      toursContainer.appendChild(card);
     });
 
   } catch (e) {

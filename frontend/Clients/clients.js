@@ -1,5 +1,5 @@
 const token = localStorage.getItem('token'); 
-const clientsTable = document.getElementById('clientsTable');
+const clientsContainer = document.getElementById('clientsContainer');
 const addClientBtn = document.getElementById('addClientBtn');
 
 addClientBtn.addEventListener('click', () => {
@@ -11,20 +11,19 @@ async function fetchClients() {
     headers: { Authorization: `Bearer ${token}` }
   });
   const clients = await res.json();
-  clientsTable.innerHTML = '';
+  clientsContainer.innerHTML = '';
   clients.forEach(c => {
-    const row = document.createElement('tr');
-    row.innerHTML = `
-      <td>${c.name}</td>
-      <td>${c.passport}</td>
-      <td>${c.phone || ''}</td>
-      <td>${c.email || ''}</td>
-      <td>
-        <button onclick="editClient('${c._id}')">Редактировать</button>
-        <button onclick="deleteClient('${c._id}')">Удалить</button>
-      </td>
-    `;
-    clientsTable.appendChild(row);
+    const card = document.createElement('div');
+      card.innerHTML = `
+      <h3>${c.name}</h3>
+      <p><strong>Паспорт:</strong> ${c.passport}</p>
+      <p><strong>Телефон:</strong> ${c.phone || ''}</p>
+      <p><strong>Email:</strong> ${c.email || ''}</p>
+      <button onclick="editClient('${c._id}')">Редактировать</button>
+      <button onclick="deleteClient('${c._id}')">Удалить</button>
+      <hr>
+`;
+    clientsContainer.appendChild(card);
   });
 }
 

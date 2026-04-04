@@ -1,5 +1,5 @@
 const token = localStorage.getItem('token');
-const applicationsTable = document.getElementById('applicationsTable');
+const applicationsContainer = document.getElementById('applicationsContainer');
 const addApplicationBtn = document.getElementById('addApplicationBtn');
 
 if (!token) {
@@ -25,46 +25,45 @@ async function fetchApplications() {
       return;
     }
 
-    applicationsTable.innerHTML = '';
+
+    applicationsContainer.innerHTML = '';
 
     applications.forEach(application => {
-      const row = document.createElement('tr');
+      const card = document.createElement('div');
 
-      row.innerHTML = `
-        <td>${application.clientId?.name || ''}</td>
-        <td>${application.tourId?.name || ''}</td>
-        <td>${application.peopleCount}</td>
-        <td>
-  ${
-    application.bookingStatus === 'NEW'
-      ? 'Новая'
-      : application.bookingStatus === 'CONFIRMED'
-      ? 'Подтверждена'
-      : application.bookingStatus === 'CANCELLED'
-      ? 'Отменена'
-      : application.bookingStatus
-  }
-        </td>
+      card.innerHTML = `
+        <h3>${application.clientId?.name || ''}</h3>
+        <p><strong>Тур:</strong> ${application.tourId?.name || ''}</p>
+        <p><strong>Количество человек:</strong> ${application.peopleCount}</p>
+        <p><strong>Статус брони:</strong> ${
+          application.bookingStatus === 'NEW'
+            ? 'Новая'
+            : application.bookingStatus === 'CONFIRMED'
+            ? 'Подтверждена'
+            : application.bookingStatus === 'CANCELLED'
+            ? 'Отменена'
+            : application.bookingStatus
+        }</p>
+        <p><strong>Статус оплаты:</strong> ${
+          application.paymentStatus === 'PAID' ? 'Оплачено' : 'Не оплачено'
+        }</p>
+        <p><strong>Дата бронирования:</strong> ${
+          application.bookingDate ? application.bookingDate.slice(0, 10) : ''
+        }</p>
 
-<td>
-  ${application.paymentStatus === 'PAID' ? 'Оплачено' : 'Не оплачено'}
-</td>
-<td>
-  ${
-    application.paymentStatus === 'UNPAID'
-      ? `<button onclick="payApplication('${application._id}')">Оплатить</button>`
-      : ''
-  }
-</td>
-        <td>${application.bookingDate ? application.bookingDate.slice(0, 10) : ''}</td>
-        <td>
-          <button onclick="confirmApplication('${application._id}')">Подтвердить</button>
-          <button onclick="issueDocuments('${application._id}')">Выдать документы</button>
-          <button onclick="deleteApplication('${application._id}')">Удалить</button>
-        </td>
+        ${
+          application.paymentStatus === 'UNPAID'
+            ? `<button onclick="payApplication('${application._id}')">Оплатить</button>`
+            : ''
+        }
+
+        ${application.bookingStatus !== 'CONFIRMED' ? `<button onclick="confirmApplication('${application._id}')">Подтвердить</button>` : ''}
+        <button onclick="issueDocuments('${application._id}')">Выдать документы</button>
+        <button onclick="deleteApplication('${application._id}')">Удалить</button>
+        <hr>
       `;
 
-      applicationsTable.appendChild(row);
+      applicationsContainer.appendChild(card);
     });
 
   } catch (e) {
@@ -86,7 +85,7 @@ window.confirmApplication = async (id) => {
     });
 
     const data = await res.json();
-
+    console.log(data);
     if (!res.ok) {
       alert(data.message);
       return;
@@ -102,23 +101,36 @@ window.confirmApplication = async (id) => {
 };
 
 window.payApplication = async (id) => {
+  console.log('=== НАЧАЛО ОПЛАТЫ ===');
+  console.log('ID заявки:', id);
+  
+  const token = localStorage.getItem('token');
+  console.log('Токен есть?', token ? 'ДА' : 'НЕТ');
+  console.log('Токен:', token);
+  
   const confirmPay = confirm('Подтвердить оплату заявки?');
   if (!confirmPay) return;
 
+  const url = `http://localhost:5000/api/payments/${id}`;
+  console.log('URL запроса:', url);
+
   try {
-    const res = await fetch(`http://localhost:5000/api/payments/pay/${id}`, {
-      method: 'PATCH',
+    const res = await fetch(url, {
+      method: 'PUT',
       headers: {
-        Authorization: `Bearer ${token}`,
+        'Authorization': `Bearer ${token}`,
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify({ method: 'cash' }) 
+      body: JSON.stringify({ method: 'cash' })
     });
 
+    console.log('Статус ответа:', res.status);
+    
     const data = await res.json();
+    console.log('Ответ сервера:', data);
 
     if (!res.ok) {
-      alert(data.message);
+      alert(`Ошибка ${res.status}: ${data.message || 'Неизвестная ошибка'}`);
       return;
     }
 
@@ -126,8 +138,8 @@ window.payApplication = async (id) => {
     fetchApplications();
 
   } catch (e) {
-    console.error(e);
-    alert('Ошибка подтверждения оплаты');
+    console.error('Ошибка при выполнении fetch:', e);
+    alert('Ошибка подключения к серверу: ' + e.message);
   }
 };
 
