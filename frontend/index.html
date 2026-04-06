@@ -3,12 +3,15 @@
 <head>
   <meta charset="UTF-8">
   <title>Панель менеджера</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <h1>Панель менеджера</h1>
+  <div class="button-container">
   <button id="clientsBtn">Клиенты</button>
   <button id="toursBtn">Туры</button>
   <button id="applicationsBtn">Заявки</button>
+  </div>
   <script>
     document.getElementById('clientsBtn').addEventListener('click', () => {
       window.location.href = 'Clients/clients.html';
