@@ -14,15 +14,26 @@ async function fetchClients() {
   clientsContainer.innerHTML = '';
   clients.forEach(c => {
     const card = document.createElement('div');
-      card.innerHTML = `
-      <h3>${c.name}</h3>
-      <p><strong>Паспорт:</strong> ${c.passport}</p>
-      <p><strong>Телефон:</strong> ${c.phone || ''}</p>
-      <p><strong>Email:</strong> ${c.email || ''}</p>
-      <button onclick="editClient('${c._id}')">Редактировать</button>
-      <button onclick="deleteClient('${c._id}')">Удалить</button>
-      <hr>
-`;
+    card.className = 'client-card';
+    card.innerHTML = `
+      <div class="client-name" >${c.name}</div>
+      <div class="client-detail">
+        <span class="detail-label">Паспорт:</span>
+        <span class="detail-value">${c.passport || '—'}</span>
+      </div>
+      <div class="client-detail">
+        <span class="detail-label">Телефон:</span>
+        <span class="detail-value">${c.phone || '—'}</span>
+      </div>
+      <div class="client-detail">
+        <span class="detail-label">Email:</span>
+        <span class="detail-value">${c.email || '—'}</span>
+      </div>
+      <div class="card-actions">
+        <button class="edit-btn" onclick="editClient('${c._id}')">Редактировать</button>
+        <button class="delete-btn" onclick="deleteClient('${c._id}')">Удалить</button>
+      </div>
+    `;
     clientsContainer.appendChild(card);
   });
 }
