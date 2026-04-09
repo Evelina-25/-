@@ -30,12 +30,13 @@ async function fetchApplications() {
 
     applications.forEach(application => {
       const card = document.createElement('div');
-
+      card.className = 'application-card';
       card.innerHTML = `
-        <h3>${application.clientId?.name || ''}</h3>
-        <p><strong>Тур:</strong> ${application.tourId?.name || ''}</p>
-        <p><strong>Количество человек:</strong> ${application.peopleCount}</p>
-        <p><strong>Статус брони:</strong> ${
+      <div class="application-title">${application.clientId?.name || 'Клиент не указан'}</div>
+      <div class="application-info">
+        <p>Тур: ${application.tourId?.name || 'Тур не указан'}</p>
+        <p>Количество человек: ${application.peopleCount}</p>
+        <p>Статус брони:<span class="status-badge">${
           application.bookingStatus === 'NEW'
             ? 'Новая'
             : application.bookingStatus === 'CONFIRMED'
@@ -43,25 +44,28 @@ async function fetchApplications() {
             : application.bookingStatus === 'CANCELLED'
             ? 'Отменена'
             : application.bookingStatus
-        }</p>
-        <p><strong>Статус оплаты:</strong> ${
+        }</span></p>
+        <p>Статус оплаты: <span class="status-badge ${
+          application.paymentStatus === 'PAID' ? 'payment-paid' : 'payment-unpaid'
+        }">${
           application.paymentStatus === 'PAID' ? 'Оплачено' : 'Не оплачено'
+        }</span></p>
+        <p>Дата бронирования: ${
+          application.bookingDate ? application.bookingDate.slice(0, 10) : '—'
         }</p>
-        <p><strong>Дата бронирования:</strong> ${
-          application.bookingDate ? application.bookingDate.slice(0, 10) : ''
-        }</p>
-
+      </div>
+      <div class="card-actions">
         ${
           application.paymentStatus === 'UNPAID'
-            ? `<button onclick="payApplication('${application._id}')">Оплатить</button>`
+            ? `<button class="pay-btn" onclick="payApplication('${application._id}')">Оплатить</button>`
             : ''
         }
-
-        ${application.bookingStatus !== 'CONFIRMED' ? `<button onclick="confirmApplication('${application._id}')">Подтвердить</button>` : ''}
-        <button onclick="issueDocuments('${application._id}')">Выдать документы</button>
-        <button onclick="deleteApplication('${application._id}')">Удалить</button>
-        <hr>
-      `;
+        ${application.bookingStatus !== 'CONFIRMED' ? `<button class="confirm-btn" onclick="confirmApplication('${application._id}')">Подтвердить</button>` : ''}
+        <button class="documents-btn" onclick="issueDocuments('${application._id}')"> Выдать документы</button>
+        <button class="delete-btn" onclick="deleteApplication('${application._id}')"> Удалить</button>
+      </div>
+     
+    `;
 
       applicationsContainer.appendChild(card);
     });

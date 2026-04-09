@@ -1,0 +1,215 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+    background: #f5f7fb;
+    color: #1e293b;
+    padding: 32px 24px;
+    line-height: 1.5;
+  }
+  
+  h1 {
+    font-size: 32px;
+    font-weight: 600;
+    color: #0f3b4a;
+    margin-bottom: 24px;
+    letter-spacing: -0.3px;
+  }
+  
+  .card-actions {
+    margin-top: 20px;
+    display: flex;
+    gap: 12px;
+    justify-content: flex-end;
+  }
+  
+  button {
+    font-size: 14px;
+    font-weight: 500;
+    padding: 8px 20px;
+    border: none;
+    border-radius: 40px;
+    background: white;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-family: inherit;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+  }
+  
+  .application-card {
+    background: white;
+    border: 1px solid #e2e8f0;
+    border-radius: 16px;
+    padding: 20px;
+    margin-bottom: 16px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+    transition: all 0.2s;
+  }
+  
+  .application-card:hover {
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    border-color: #cbd5e1;
+  }
+  
+  .application-title {
+    font-weight: bold;
+    font-size: 18px;
+    margin-bottom: 12px;
+    color: #0f3b4a;
+  }
+  
+  .application-info {
+    margin-bottom: 8px;
+  }
+  
+  .application-info p {
+    margin-bottom: 6px;
+  }
+  
+  .application-info strong {
+    color: #1e293b;
+  }
+  
+  .pay-btn,
+  .confirm-btn,
+  .documents-btn,
+  .delete-btn {
+    background: transparent;
+    padding: 6px 16px;
+    border-radius: 32px;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-family: inherit;
+    border: none;
+  }
+  
+  .pay-btn {
+    color: #1a6d8a;
+    border: 1px solid #cae0ea;
+  }
+  
+  .pay-btn:hover {
+    background: #e6f0f5;
+    transform: translateY(-1px);
+  }
+  
+  .confirm-btn {
+    color: #2b7a4b;
+    border: 1px solid #c5e0d3;
+  }
+  
+  .confirm-btn:hover {
+    background: #e6f5ef;
+    transform: translateY(-1px);
+  }
+  
+  .documents-btn {
+    color: #8b6b3d;
+    border: 1px solid #e6d9c5;
+  }
+  
+  .documents-btn:hover {
+    background: #f5f0e6;
+    transform: translateY(-1px);
+  }
+  
+  .delete-btn {
+    color: #b16262;
+    border: 1px solid #e6cfcf;
+  }
+  
+  .delete-btn:hover {
+    background: #fce8e8;
+    transform: translateY(-1px);
+  }
+  
+  #applicationsContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-top: 28px;
+    max-width: 700px;
+  }
+  
+  #addApplicationBtn {
+    background: #1a6d8a;
+    color: white;
+    margin-right: 12px;
+  }
+  
+  #addApplicationBtn:hover {
+    background: #0e5a73;
+    transform: translateY(-1px);
+  }
+  
+  #managerPanelBtn {
+    background: #ffffff;
+    color: #1a5a6e;
+    border: 1px solid #cbdde6;
+  }
+  
+  #managerPanelBtn:hover {
+    background: #eef3f8;
+    border-color: #9bb7c6;
+  }
+  
+  @media (max-width: 600px) {
+    body {
+      padding: 20px 16px;
+    }
+    
+    h1 {
+      font-size: 26px;
+    }
+    
+    #applicationsContainer {
+      max-width: 100%;
+    }
+    
+    #addApplicationBtn {
+      margin-right: 0;
+      margin-bottom: 10px;
+    }
+    
+    .card-actions {
+      flex-wrap: wrap;
+    }
+  }
+  
+  .status-badge {
+    display: inline-block;
+    padding: 2px 10px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 500;
+  }
+  
+  .status-new {
+    background: #fff7e5;
+    color: #b76e00;
+  }
+  
+  .status-confirmed {
+    background: #e5f7ef;
+    color: #1e7b48;
+  }
+  
+  .status-cancelled {
+    background: #feecec;
+    color: #b16262;
+  }
+  
+  .payment-paid {
+    background: #e5f7ef;
+    color: #1e7b48;
+  }
+  
+  .payment-unpaid {
+    background: #fff7e5;
+    color: #b76e00;
