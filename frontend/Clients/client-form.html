@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <title>Клиент</title>
+  <link rel="stylesheet" href="client-form.css">
 </head>
 <body>
   <h1 id="formTitle">Новый клиент</h1>
@@ -12,8 +13,10 @@
     <input type="text" name="phone" placeholder="Телефон"><br>
     <input type="email" name="email" placeholder="Email"><br>
     <input type="date" name="birthdate" placeholder="Дата рождения" required><br>
+    <div class="buttons">
     <button type="submit">Сохранить</button>
     <button type="button" onclick="window.location.href='clients.html'">Отмена</button>
+  </div>
   </form>
 
   <script src="../Clients/client-form.js"></script>
