@@ -54,8 +54,12 @@ class ApplicationService {
         if(application.bookingStatus !== "CONFIRMED" || application.paymentStatus !== "PAID") {
             throw new Error("Документы можно выдать только после оплаты и подтверждения брони");
         }
-        //Финальный пакет доков
-        return DocumentService.createFinalDocuments(applicationId);
+         const result = await DocumentService.createFinalDocuments(applicationId);
+
+    application.documentsIssued = true;
+    await application.save();
+
+    return result;
     }
 
     async getAll() {

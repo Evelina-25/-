@@ -40,8 +40,12 @@ const Application = new mongoose.Schema({
     bookingDate: {
         type: Date,
         default: Date.now
-    }
+    },
 
+    documentsIssued: {
+    type: Boolean,
+    default: false
+}
 });
 
 export default mongoose.model("Application", Application);
