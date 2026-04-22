@@ -1,0 +1,115 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+    background: #f5f7fb;
+    color: #1e293b;
+    padding: 32px 24px;
+    line-height: 1.5;
+    min-height: 100vh;
+    display: flex; 
+    flex-direction: column; 
+    justify-content: center; 
+    align-items: center;
+  }
+  
+  h1 {
+    font-size: 32px;
+    font-weight: 600;
+    color: #0f3b4a;
+    margin-bottom: 24px;
+    letter-spacing: -0.3px;
+    text-align: center;
+  }
+  
+  form {
+    background: white;
+    border: 1px solid #e2e8f0;
+    border-radius: 16px;
+    padding: 24px;
+    max-width: 500px;
+    width: 100%;
+  }
+  
+  label {
+    font-weight: 500;
+    color: #0f3b4a;
+    margin-bottom: 8px;
+    display: inline-block;
+  }
+  
+  input, select {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid #cbd5e1;
+    border-radius: 12px;
+    font-size: 14px;
+    font-family: inherit;
+    background: white;
+    transition: all 0.2s ease;
+    margin-top: 4px;
+  }
+  
+  input:focus, select:focus {
+    outline: none;
+    border-color: #1a6d8a;
+  }
+  
+  button {
+    font-size: 14px;
+    font-weight: 500;
+    padding: 8px 20px;
+    border: none;
+    border-radius: 40px;
+    background: white;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-family: inherit;
+  }
+  
+  .buttons {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    margin-top: 24px;
+  }
+  
+  button[type="submit"] {
+    background: #1a6d8a;
+    color: white;
+  }
+  
+  button[type="submit"]:hover {
+    background: #0e5a73;
+    transform: translateY(-1px);
+  }
+  
+  button[type="button"] {
+    background: transparent;
+    color: #1a6d8a;
+    border: 1px solid #cae0ea;
+  }
+  
+  button[type="button"]:hover {
+    background: #e6f0f5;
+    transform: translateY(-1px);
+  }
+  
+  @media (max-width: 600px) {
+    body {
+      padding: 20px 16px;
+    }
+    
+    h1 {
+      font-size: 26px;
+    }
+    
+    form {
+      padding: 20px;
+      max-width: 100%;
+    }
+  }
