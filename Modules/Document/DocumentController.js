@@ -38,6 +38,14 @@ class DocumentController {
         }
     }
 
+    async getByApplication(req, res){
+    try {
+        const docs = await DocumentService.getByApplication(req.params.applicationId);
+        res.json(docs);
+    } catch(e) {
+        res.status(400).json({ message: e.message });
+    }
+}
 }
 
 export default new DocumentController();

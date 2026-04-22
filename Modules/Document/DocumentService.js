@@ -40,11 +40,7 @@ async createFinalDocuments(applicationId){
             type: "SERVICE_CONTRACT",
             number: "CON-" + Date.now()
         },
-        {
-            applicationId,
-            type: "TUR1_VOUCHER",
-            number: "TUR1-" + Date.now()
-        },
+        
         {
             applicationId,
             type: "TOURIST_MEMO",

@@ -7,7 +7,7 @@ const Document = new mongoose.Schema({
         ref: "Application",
         required: true
     },
-
+    
     type: {
         type: String,
         enum: [
@@ -45,7 +45,6 @@ const Document = new mongoose.Schema({
         type: Date,
         default: Date.now
     }
-
-});
+}, { timestamps: true });
 
 export default mongoose.model("Document", Document);
