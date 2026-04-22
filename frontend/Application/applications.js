@@ -61,12 +61,17 @@ async function fetchApplications() {
             : ''
         }
         ${application.bookingStatus !== 'CONFIRMED' ? `<button class="confirm-btn" onclick="confirmApplication('${application._id}')">Подтвердить</button>` : ''}
-        <button class="documents-btn" onclick="issueDocuments('${application._id}')"> Выдать документы</button>
+        ${
+  !application.documentsIssued
+    ? `<button class="documents-btn" onclick="issueDocuments('${application._id}')">Выдать документы</button>`
+    : ''
+}
+    <button class="view-docs-btn" onclick="viewDocuments('${application._id}')">
+      Просмотреть документы
+    </button>
         <button class="delete-btn" onclick="deleteApplication('${application._id}')"> Удалить</button>
       </div>
-     
-    `;
-
+        `; 
       applicationsContainer.appendChild(card);
     });
 
@@ -164,7 +169,7 @@ window.issueDocuments = async (id) => {
     }
 
     alert('Документы выданы');
-
+    fetchApplications();
   } catch (e) {
     console.error(e);
     alert('Ошибка выдачи документов');
@@ -198,6 +203,10 @@ window.deleteApplication = async (id) => {
     console.error(e);
     alert('Ошибка удаления заявки');
   }
+};
+
+window.viewDocuments = (id) => {
+  window.location.href = `../Documents/documents.html?applicationId=${id}`;
 };
 
 fetchApplications();

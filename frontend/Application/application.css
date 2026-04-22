@@ -25,14 +25,15 @@
     display: flex;
     gap: 12px;
     justify-content: flex-end;
+    flex-wrap: wrap;
   }
   
   button {
-    font-size: 14px;
+    font-size: 13px;
     font-weight: 500;
-    padding: 8px 20px;
+    padding: 6px 12px;
     border: none;
-    border-radius: 40px;
+    border-radius: 30px;
     background: white;
     cursor: pointer;
     transition: all 0.2s ease;
@@ -77,7 +78,8 @@
   .pay-btn,
   .confirm-btn,
   .documents-btn,
-  .delete-btn {
+  .delete-btn,
+  .view-docs-btn {
     background: transparent;
     padding: 6px 16px;
     border-radius: 32px;
@@ -126,6 +128,16 @@
   
   .delete-btn:hover {
     background: #fce8e8;
+    transform: translateY(-1px);
+  }
+
+  .view-docs-btn{
+    color: #1a6d8a;
+    border: 1px solid #e6cfcf;
+  }
+
+    .view-docs-btn:hover {
+    background: #e2e8f0;
     transform: translateY(-1px);
   }
   
@@ -213,3 +225,4 @@
   .payment-unpaid {
     background: #fff7e5;
     color: #b76e00;
+  }
