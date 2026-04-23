@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="chief.css">
+  <title>ТурАгентство</title>
+</head>
+<body>
+  <header class="header">
+    <div class="container header-inner">
+      <div class="logo">
+        <h1>TravelPro</h1>
+        <p>Ваш идеальный тур — в три шага</p>
+      </div>
+      <div class="auth-buttons">
+        <button class="btn-login" id="loginBtn"> Войти</button>
+        <button class="btn-register" id="registerBtn"> Регистрация</button>
+      </div>
+    </div>
+  </header>
+  <section class="hero">
+    <div class="container">
+      <h2>Процесс продажи турпродукта</h2>
+      <p>Приём заявки → Подбор и бронирование тура → Оформление документов и расчёт с клиентом.<br>
+      Всё просто, прозрачно и надёжно.</p>
+    </div>
+  </section>
+  <section class="process-section">
+    <div class="container">
+      <h2 class="section-title">Как мы создаём ваш идеальный отдых</h2>
+      <div class="steps-grid">
+        
+        <div class="step-card">
+          <div class="step-number">1</div>
+          <h3> Приём заявки</h3>
+          <p><strong>Встреча в офисе → определение потребностей → оформление заявки.</strong></p>
+          <ul>
+            <li>Консультация по типу отдыха</li>
+            <li>Заявка туриста (маршрут, даты, проживание)</li>
+            <li>Подписание заявки клиентом и менеджером</li>
+            <li>Частичная оплата в кассе → квитанция</li>
+          </ul>
+          <p style="margin-top: 12px; font-style: italic; color: #1e2f3e;"> Обе стороны получают экземпляр заявки</p>
+        </div>
+
+        <div class="step-card">
+          <div class="step-number">2</div>
+          <h3> Подбор и бронирование</h3>
+          <ul>
+            <li>Запрос туроператору (факс/e-mail)</li>
+            <li>Бронирование мест или корректировка требований</li>
+            <li>Оформление туристского ваучера (гарантия услуг)</li>
+            <li>Приобретение билетов на транспорт</li>
+            <li>Оформление медицинского страхового полиса</li>
+            <li>Помощь с визой: документы, консульский сбор</li>
+          </ul>
+          <p style="margin-top: 12px;"> Если оператор отказал — связь с клиентом и повторный подбор.</p>
+        </div>
+
+        <div class="step-card">
+          <div class="step-number">3</div>
+          <h3> Оформление и расчёт</h3>
+          <ul>
+            <li>Заключение договора на туробслуживание</li>
+            <li>Окончательный расчёт с клиентом</li>
+            <li>Выдача документов: турпутевка (ТУР-1), ваучер, билеты, паспорт с визой</li>
+            <li>Страховой полис и памятка туриста</li>
+          </ul>
+          <p style="margin-top: 12px;"> Договор — главный документ, путевка ТУР-1 — бланк строгой отчетности.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <footer class="footer">
+    <div class="container">
+      <p>© 2025 TravelPro — Туристическое агентство. Профессиональный подход к каждому этапу продажи турпродукта.</p>
+      <p style="margin-top: 12px;"> Горячая линия: 8-800-555-35-35 | travel@pro.ru</p>
+    </div>
+  </footer>
+  <script>
+    const loginBtn = document.getElementById('loginBtn');
+    const registerBtn = document.getElementById('registerBtn');
+
+    if (loginBtn) {
+        loginBtn.addEventListener('click', () => {
+            window.open('../Avt/avt.html', '_blank') 
+        });
+    }
+
+    if (registerBtn) {
+        registerBtn.addEventListener('click', () => {
+            window.open('../Reg/reg.html', '_blank') 
+        });
+    }
+</script>
+</body>
+</html>
