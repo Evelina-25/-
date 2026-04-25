@@ -27,6 +27,14 @@
     justify-content: flex-end;
   }
   
+  .buttons-container {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 30px;
+    flex-wrap: wrap;
+    
+  }
+
   button {
     font-size: 14px;
     font-weight: 500;
@@ -102,6 +110,36 @@
   }
   
   #addClientBtn:hover {
+    background: #0e5a73;
+    transform: translateY(-1px);
+  }
+
+  #toursBtn {
+    background: #1a6d8a;
+    color: white;
+  }
+  
+  #toursBtn:hover {
+    background: #0e5a73;
+    transform: translateY(-1px);
+  }
+
+  #applicationsBtn {
+    background: #1a6d8a;
+    color: white;
+  }
+  
+  #applicationsBtn:hover {
+    background: #0e5a73;
+    transform: translateY(-1px);
+  }
+  
+  #documentsBtn {
+    background: #1a6d8a;
+    color: white;
+  }
+
+  #documentsBtn:hover {
     background: #0e5a73;
     transform: translateY(-1px);
   }

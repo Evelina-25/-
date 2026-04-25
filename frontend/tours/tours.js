@@ -9,6 +9,23 @@ if (!token) {
 addTourBtn.addEventListener('click', () => {
   window.location.href = 'tour-form.html';
 });
+if (ClientsBtn) {
+  toursBtn.addEventListener('click', () => {
+    window.location.href = '../Clients/clients.html';
+  });
+}
+
+if (applicationsBtn) {
+  applicationsBtn.addEventListener('click', () => {
+    window.location.href = '../Application/applications.html';
+  });
+}
+
+if (documentsBtn) {
+  documentsBtn.addEventListener('click', () => {
+    window.location.href = '../Documents/documents.html'; 
+  });
+}
 
 async function fetchTours() {
   try {

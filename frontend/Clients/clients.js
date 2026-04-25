@@ -1,10 +1,31 @@
 const token = localStorage.getItem('token'); 
 const clientsContainer = document.getElementById('clientsContainer');
 const addClientBtn = document.getElementById('addClientBtn');
+const toursBtn = document.getElementById('toursBtn');
+const applicationsBtn = document.getElementById('applicationsBtn');
+const documentsBtn = document.getElementById('documentsBtn');
 
 addClientBtn.addEventListener('click', () => {
   window.location.href = 'client-form.html';
 });
+if (toursBtn) {
+  toursBtn.addEventListener('click', () => {
+    window.location.href = '../tours/tours.html';
+  });
+}
+
+if (applicationsBtn) {
+  applicationsBtn.addEventListener('click', () => {
+    window.location.href = '../Application/applications.html';
+  });
+}
+
+if (documentsBtn) {
+  documentsBtn.addEventListener('click', () => {
+    window.location.href = '../Documents/documents.html'; 
+  });
+}
+
 
 async function fetchClients() {
   const res = await fetch('http://localhost:5000/api/clients', {
