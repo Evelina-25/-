@@ -18,7 +18,7 @@ form.addEventListener('submit', async (e) => {
 
       localStorage.setItem('token', data.token);
 
-      window.location.href = '../index.html';
+      window.location.href = '../Clients/clients.html';
     } else {
       alert(data.message || 'Ошибка авторизации');
     }
