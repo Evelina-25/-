@@ -1,127 +1,141 @@
-    * {
-        box-sizing: border-box;
-        margin: 0;
-        padding: 0;
-    }
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
-    body {
-        min-height: 100vh;
-        display: flex;
-        justify-content: center;      
-        align-items: flex-start;      
-        padding-top: 50px; 
-        background-color: #f8f9fa;           
-    }
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+    background: #f5f7fb;
+    color: #1e293b;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 32px 24px;
+}
 
-    .wrapper {
-        max-width: 720px;
-        width: 100%;
-        padding: 20px;
-        margin: 0 auto;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
+.wrapper {
+    max-width: 500px;
+    width: 100%;
+    margin: 0 auto;
+}
 
-    .wrapper-form {
-        padding: 20px 100px;
-        
-    }
+.wrapper-form {
+    background: white;
+    border: 1px solid #e2e8f0;
+    border-radius: 16px;
+    padding: 32px;
+}
 
-    .title {
-        text-align: center;
-        padding: 25px 0;
-        color: #2C3E50;
-        font-size: 26px;
-        font-weight: 400;
-    }
+.title {
+    text-align: center;
+    font-size: 32px;
+    font-weight: 600;
+    color: #0f3b4a;
+    margin-bottom: 28px;
+    letter-spacing: -0.3px;
+}
 
-    .reg-form {
-        display: flex;
-        flex-direction: column;
-        gap: 15px;
-        align-items: center;
-    }
+.reg-form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
 
-    .reg-input {
-        height: 30px;
-        width: 220px;
-        border-radius: 10px;
-        border: 1px solid #A9A9A9;
-        background-color: #F0F2F5;
-    }
+.reg-input {
+    width: 100%;
+    padding: 12px 16px;
+    border: 1px solid #cbd5e1;
+    border-radius: 12px;
+    font-size: 14px;
+    font-family: inherit;
+    background: white;
+    transition: all 0.2s ease;
+}
 
-    .reg-input::placeholder {
-        color: #5A6C7E;
-        padding: 10px 10px 10px 10px;
-    }
+.reg-input::placeholder {
+    color: #94a3b8;
+}
 
-    .reg-input:focus {
-        outline: none;
-        border: 1px solid #808080;
-    }
+.reg-input:focus {
+    outline: none;
+    border-color: #1a6d8a;
+}
 
-    .reg-sub {
-        height: 30px;
-        width: 220px;
-        border-radius: 10px;
-        border: 1px solid #A9A9A9;
-        color: #5A6C7E;
-        background: transparent;
-        cursor: pointer;
-        transition: 0.3s;
-    }
+.reg-sub {
+    font-size: 14px;
+    font-weight: 500;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 40px;
+    background: #1a6d8a;
+    color: white;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-family: inherit;
+    width: 100%;
+    margin-top: 8px;
+}
 
-    .reg-sub:focus {
-        outline: none;
-        border: 1px solid #808080;
-    }
+.reg-sub:hover {
+    background: #0e5a73;
+    transform: translateY(-1px);
+}
 
-    .reg-sub:hover {
-        background-color: #A9A9A9;
-        color: white;
-    }
+.reg-sub:focus {
+    outline: none;
+}
 
-   .auth-link {
-    text-align: center; /* центрируем текст и кнопку */
-    margin-top: 20px; /* расстояние от формы */
+.auth-link {
+    text-align: center;
+    margin-top: 24px;
 }
 
 .auth-link p {
-    margin-bottom: 10px; /* расстояние между текстом и кнопкой */
-    color: #2C3E50; /* цвет текста */
-    font-size: 16px;
+    color: #64748b;
+    font-size: 14px;
+    margin-bottom: 12px;
 }
 
 .avt {
-    display: inline-flex;        /* используем flex, чтобы выровнять содержимое */
-    justify-content: center;     /* горизонтальное центрирование текста */
-    align-items: center;         /* вертикальное центрирование текста */
-    height: 30px;                /* высота кнопки */
-    width: 220px;                /* ширина кнопки */
-    border-radius: 10px;
-    border: 1px solid #A9A9A9;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 14px;
+    font-weight: 500;
+    padding: 8px 20px;
+    border: 1px solid #cae0ea;
+    border-radius: 40px;
     background: transparent;
-    color: #5A6C7E;
+    color: #1a6d8a;
     text-decoration: none;
     cursor: pointer;
-    transition: 0.3s;
-    font-size: 16px;             /* размер текста */
+    transition: all 0.2s ease;
+    font-family: inherit;
+    width: 100%;
 }
 
 .avt:hover {
-    background-color: #A9A9A9;
-    color: white;
+    background: #e6f0f5;
+    transform: translateY(-1px);
 }
 
-    @media (max-width: 600px) {
-        .wrapper-form {
-            padding: 40px 20px;
-        }
-        
-        .reg-input,
-        .reg-sub,
-        .avt {
-            width: 220px;           
-        }
+@media (max-width: 600px) {
+    body {
+        padding: 20px 16px;
     }
+
+    .wrapper-form {
+        padding: 20px;
+    }
+
+    .title {
+        font-size: 26px;
+        margin-bottom: 20px;
+    }
+
+    .reg-form {
+        gap: 12px;
+    }
+}
