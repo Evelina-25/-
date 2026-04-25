@@ -1,7 +1,8 @@
 const token = localStorage.getItem('token');
 const toursContainer = document.getElementById('toursContainer');
 const addTourBtn = document.getElementById('addTourBtn');
-
+const ClientsBtn = document.getElementById('ClientsBtn');
+const applicationsBtn = document.getElementById('applicationsBtn');
 if (!token) {
   window.location.href = '/Avt/avt.html';
 }
@@ -10,7 +11,7 @@ addTourBtn.addEventListener('click', () => {
   window.location.href = 'tour-form.html';
 });
 if (ClientsBtn) {
-  toursBtn.addEventListener('click', () => {
+   ClientsBtn.addEventListener('click', () => {
     window.location.href = '../Clients/clients.html';
   });
 }
@@ -18,12 +19,6 @@ if (ClientsBtn) {
 if (applicationsBtn) {
   applicationsBtn.addEventListener('click', () => {
     window.location.href = '../Application/applications.html';
-  });
-}
-
-if (documentsBtn) {
-  documentsBtn.addEventListener('click', () => {
-    window.location.href = '../Documents/documents.html'; 
   });
 }
 

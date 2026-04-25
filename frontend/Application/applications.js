@@ -1,7 +1,8 @@
 const token = localStorage.getItem('token');
 const applicationsContainer = document.getElementById('applicationsContainer');
 const addApplicationBtn = document.getElementById('addApplicationBtn');
-
+const toursBtn = document.getElementById('toursBtn');
+const clientsBtn = document.getElementById('ClientsBtn');
 if (!token) {
   window.location.href = '/Avt/avt.html';
 }
@@ -9,6 +10,17 @@ if (!token) {
 addApplicationBtn.addEventListener('click', () => {
   window.location.href = 'application-form.html';
 });
+if (toursBtn) {
+  toursBtn.addEventListener('click', () => {
+    window.location.href = '../tours/tours.html';
+  });
+}
+
+if (clientsBtn) {
+  clientsBtn.addEventListener('click', () => {
+    window.location.href = '../clients/clients.html';
+  });
+}
 
 async function fetchApplications() {
   try {
@@ -34,26 +46,42 @@ async function fetchApplications() {
       card.innerHTML = `
       <div class="application-title">${application.clientId?.name || 'Клиент не указан'}</div>
       <div class="application-info">
-        <p>Тур: ${application.tourId?.name || 'Тур не указан'}</p>
-        <p>Количество человек: ${application.peopleCount}</p>
-        <p>Статус брони:<span class="status-badge">${
-          application.bookingStatus === 'NEW'
-            ? 'Новая'
-            : application.bookingStatus === 'CONFIRMED'
-            ? 'Подтверждена'
-            : application.bookingStatus === 'CANCELLED'
-            ? 'Отменена'
-            : application.bookingStatus
-        }</span></p>
-        <p>Статус оплаты: <span class="status-badge ${
-          application.paymentStatus === 'PAID' ? 'payment-paid' : 'payment-unpaid'
-        }">${
-          application.paymentStatus === 'PAID' ? 'Оплачено' : 'Не оплачено'
-        }</span></p>
-        <p>Дата бронирования: ${
-          application.bookingDate ? application.bookingDate.slice(0, 10) : '—'
-        }</p>
-      </div>
+        <div class="application-detail">
+  <span class="detail-label">Тур:</span>
+  <span class="detail-value">${application.tourId?.name || '—'}</span>
+</div>
+
+<div class="application-detail">
+  <span class="detail-label">Количество человек:</span>
+  <span class="detail-value">${application.peopleCount || '—'}</span>
+</div>
+
+<div class="application-detail">
+  <span class="detail-label">Статус брони:</span>
+  <span class="detail-value">${
+    application.bookingStatus === 'NEW'
+      ? 'Новая'
+      : application.bookingStatus === 'CONFIRMED'
+      ? 'Подтверждена'
+      : application.bookingStatus === 'CANCELLED'
+      ? 'Отменена'
+      : application.bookingStatus
+  }</span>
+</div>
+
+<div class="application-detail">
+  <span class="detail-label">Статус оплаты:</span>
+  <span class="detail-value">${
+    application.paymentStatus === 'PAID' ? 'Оплачено' : 'Не оплачено'
+  }</span>
+</div>
+
+<div class="application-detail">
+  <span class="detail-label">Дата бронирования:</span>
+  <span class="detail-value">${
+    application.bookingDate ? application.bookingDate.slice(0, 10) : '—'
+  }</span>
+</div>
       <div class="card-actions">
         ${
           application.paymentStatus === 'UNPAID'

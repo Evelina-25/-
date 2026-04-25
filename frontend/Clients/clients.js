@@ -20,13 +20,6 @@ if (applicationsBtn) {
   });
 }
 
-if (documentsBtn) {
-  documentsBtn.addEventListener('click', () => {
-    window.location.href = '../Documents/documents.html'; 
-  });
-}
-
-
 async function fetchClients() {
   const res = await fetch('http://localhost:5000/api/clients', {
     headers: { Authorization: `Bearer ${token}` }

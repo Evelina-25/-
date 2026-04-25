@@ -19,6 +19,24 @@
     margin-bottom: 24px;
     letter-spacing: -0.3px;
   }
+
+  .application-detail {
+  display: flex;
+  gap: 6px;
+  margin-top: 6px;
+  align-items: baseline;
+}
+
+.detail-label {
+  font-size: 14px;
+  color:#1e293b;
+  font-size: 16px;
+}
+
+.detail-value {
+  font-size: 14px;
+  color: rgb(28, 75, 92);
+}
   
   .card-actions {
     margin-top: 20px;
@@ -27,18 +45,23 @@
     justify-content: flex-end;
     flex-wrap: wrap;
   }
-  
+    .buttons-container {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 30px;
+    flex-wrap: wrap; 
+  }
+
   button {
-    font-size: 13px;
+    font-size: 14px;
     font-weight: 500;
-    padding: 6px 12px;
+    padding: 8px 20px;
     border: none;
-    border-radius: 30px;
+    border-radius: 40px;
     background: white;
     cursor: pointer;
     transition: all 0.2s ease;
     font-family: inherit;
-    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
   }
   
   .application-card {
@@ -47,12 +70,10 @@
     border-radius: 16px;
     padding: 20px;
     margin-bottom: 16px;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
     transition: all 0.2s;
   }
   
   .application-card:hover {
-    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
     border-color: #cbd5e1;
   }
   
@@ -160,6 +181,26 @@
     transform: translateY(-1px);
   }
   
+   #toursBtn {
+    background: #6c5ce7;
+    color: white;
+  }
+  
+  #toursBtn:hover {
+    background: #6c5ce7;
+    transform: translateY(-1px);
+  }
+
+   #ClientsBtn {
+    background: #00b894;
+    color: white;
+  }
+  
+  #ClientsBtn:hover {
+    background: #00b894;
+    transform: translateY(-1px);
+  }
+
   #managerPanelBtn {
     background: #ffffff;
     color: #1a5a6e;

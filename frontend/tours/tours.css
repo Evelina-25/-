@@ -30,7 +30,6 @@
     cursor: pointer;
     transition: all 0.2s ease;
     font-family: inherit;
-    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
   }
   
   #addTourBtn {
@@ -41,6 +40,26 @@
   
   #addTourBtn:hover {
     background: #0e5a73;
+    transform: translateY(-1px);
+  }
+
+     #ClientsBtn {
+    background: #00b894;
+    color: white;
+  }
+  
+  #ClientsBtn:hover {
+    background: #00b894;
+    transform: translateY(-1px);
+  }
+
+  #applicationsBtn {
+    background: #ff7675;
+    color: white;
+  }
+  
+  #applicationsBtn:hover {
+    background: #ff7675;
     transform: translateY(-1px);
   }
   
@@ -61,7 +80,6 @@
     border-radius: 16px;
     padding: 20px;
     margin-bottom: 16px;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
     transition: all 0.2s;
   }
   
@@ -97,7 +115,6 @@
     transition: all 0.2s ease;
     font-family: inherit;
     border: none;
-    box-shadow: none;
   }
   
   .edit-btn {

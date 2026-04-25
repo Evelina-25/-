@@ -20,6 +20,22 @@
     letter-spacing: -0.3px;
   }
 
+  .client-detail {
+  display: flex;
+  gap: 6px;
+  margin-top: 6px;
+  align-items: baseline;
+}
+
+.detail-label {
+  color: #1e293b;
+}
+
+.detail-value {
+  font-size: 14px;
+  color:  #1c4b5c;
+}
+
   .card-actions{
     margin-top: 20px;
     display: flex;
@@ -31,8 +47,7 @@
     display: flex;
     gap: 12px;
     margin-bottom: 30px;
-    flex-wrap: wrap;
-    
+    flex-wrap: wrap; 
   }
 
   button {
@@ -115,32 +130,22 @@
   }
 
   #toursBtn {
-    background: #1a6d8a;
+    background: #6c5ce7;
     color: white;
   }
   
   #toursBtn:hover {
-    background: #0e5a73;
+    background: #6c5ce7;
     transform: translateY(-1px);
   }
 
   #applicationsBtn {
-    background: #1a6d8a;
+    background: #ff7675;
     color: white;
   }
   
   #applicationsBtn:hover {
-    background: #0e5a73;
-    transform: translateY(-1px);
-  }
-  
-  #documentsBtn {
-    background: #1a6d8a;
-    color: white;
-  }
-
-  #documentsBtn:hover {
-    background: #0e5a73;
+    background: #ff7675;
     transform: translateY(-1px);
   }
   
