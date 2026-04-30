@@ -1,6 +1,6 @@
 const token = localStorage.getItem('token');
 const container = document.getElementById('documentsContainer');
-
+const nazad = document.getElementById('nazad');
 const params = new URLSearchParams(window.location.search);
 const applicationId = params.get('applicationId');
 const typeMap = {
@@ -10,6 +10,9 @@ const typeMap = {
   SERVICE_CONTRACT: "Договор",
   TOURIST_MEMO: "Туристическая путевка"
 };
+nazad.addEventListener('click', () => {
+  window.location.href = '../Application/applications.html';
+});
 async function fetchDocuments() {
   try {
     const res = await fetch(`http://localhost:5000/api/documents/application/${applicationId}`, {

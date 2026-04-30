@@ -9,6 +9,25 @@ body {
   align-items: center;
   min-height: 100vh;
 }
+
+button{
+  margin-top: 15px;
+  background: #1a6d8a;
+  font-size: 14px;
+    font-weight: 500;
+    padding: 8px 20px;
+    border: none;
+    border-radius: 40px;
+    color: white;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-family: inherit;
+}
+
+button:hover{
+  background: #0e5a73;
+  transform: translateY(-1px);
+}
 #documentsContainer {
   display: flex;
   flex-direction: column;
