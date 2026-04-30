@@ -51,10 +51,25 @@ async createFinalDocuments(applicationId){
     return Document.insertMany(docs);
 }
 
+
 async getByApplication(applicationId){
     return Document.find({applicationId});
 }
-
+async getOne(documentId){
+    if (!documentId) {
+        throw new Error("ID документа не указан");
+    }
+    
+    const document = await Document.findById(documentId);
+    
+    if (!document) {
+        throw new Error("Документ не найден");
+    }
+    
+    return document;
 }
+}
+
+
 
 export default new DocumentService();

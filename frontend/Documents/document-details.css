@@ -1,0 +1,79 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 20px;
+    background-color: #f5f5f5;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    background: white;
+    border-radius: 8px;
+    padding: 30px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+h1 {
+    color: #333;
+    text-align: center;
+    padding-bottom: 10px;
+}
+
+.doc-info {
+    margin: 20px 0;
+}
+
+.info-row {
+    margin: 15px 0;
+    padding: 10px;
+    background: #f9f9f9;
+    border-radius: 4px;
+}
+
+.label {
+    font-weight: bold;
+    color: #555;
+    display: inline-block;
+    width: 150px;
+}
+
+.value {
+    color: #333;
+}
+
+.button {
+    background-color: #1a6d8a;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 20px;
+    margin-right: 10px;
+}
+
+.button:hover {
+    background-color: #0e5a73;
+}
+
+.button-back {
+    background-color: #666;
+}
+
+.button-back:hover {
+    background-color: #555;
+}
+
+.loading {
+    text-align: center;
+    padding: 50px;
+    font-size: 18px;
+    color: #666;
+}
+
+.error {
+    color: red;
+    text-align: center;
+    padding: 50px;
+}

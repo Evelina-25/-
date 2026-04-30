@@ -34,6 +34,9 @@ div.innerHTML = `
   <h3>${typeMap[doc.type] || doc.type}</h3>
   <p> ${doc.createdAt ? new Date(doc.createdAt).toLocaleDateString('ru-RU') : '—'}</p>
 `;
+div.addEventListener('click', () => {
+  window.location.href = `./document-details.html?id=${doc._id}&applicationId=${applicationId}`;
+});
       container.appendChild(div);
     });
 
