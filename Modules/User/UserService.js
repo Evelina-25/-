@@ -5,6 +5,21 @@ class UserService {
 
     async register(username, password){
 
+        if (!username || username.trim() === "") {
+            throw new Error("Имя пользователя не может быть пустым");
+        }
+
+        if (username.trim().length < 3) {
+            throw new Error("Имя пользователя должно содержать минимум 3 символа");
+        }
+        
+        if (!password || password.trim() === "") {
+            throw new Error("Пароль не может быть пустым");
+        }
+        if (password.length < 6) {
+            throw new Error("Пароль должен содержать минимум 6 символов");
+        }
+         
         const candidate = await User.findOne({ username });
 
         if(candidate){
@@ -23,7 +38,14 @@ class UserService {
     }
 
     async login(username, password){
-
+         
+        if (!username || username.trim() === "") {
+            throw new Error("Введите имя пользователя");
+        }
+        
+        if (!password || password.trim() === "") {
+            throw new Error("Введите пароль");
+        }
         const user = await User.findOne({ username });
 
         if(!user){
