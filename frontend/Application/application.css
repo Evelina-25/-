@@ -10,15 +10,102 @@
     color: #1e293b;
     padding: 32px 24px;
     line-height: 1.5;
+    display: flex;           
+    flex-direction: column;  
+    align-items: center;     
+    min-height: 100vh;    
   }
   
-  h1 {
-    font-size: 32px;
-    font-weight: 600;
-    color: #0f3b4a;
-    margin-bottom: 24px;
-    letter-spacing: -0.3px;
+  #addApplicationBtn {
+    background: #1a6d8a;
+    color: white;
+    padding: 10px 24px;
+    border: none;
+    border-radius: 40px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-family: inherit;
+    white-space: nowrap;
   }
+  
+  #addApplicationBtn:hover {
+    background: #0e5a73;
+    transform: translateY(-1px);
+  }
+
+.nav-panel {
+  display: flex;
+  gap: 12px;
+  width: 100%;
+  max-width: 700px;
+  margin-bottom: 24px;
+  padding: 12px 0;
+  border-bottom: 2px solid #e2e8f0;
+}
+
+.nav-btn {
+  font-size: 14px;
+  font-weight: 500;
+  padding: 10px 24px;
+  border: none;
+  border-radius: 40px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-family: inherit;
+  background: white;
+  color: #1e293b;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+}
+
+.nav-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.tours-btn {
+  background: #6c5ce7;
+  color: white;
+}
+
+.tours-btn:hover {
+  background: #5a4bd1;
+}
+
+.clients-btn {
+  background: #00b894;
+  color: white;
+}
+
+.clients-btn:hover {
+  background: #00a381;
+}
+.header-panel {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  max-width: 700px;
+  margin-bottom: 16px;
+}
+
+.header-panel h1 {
+  font-size: 28px;
+  font-weight: 600;
+  color: #0f3b4a;
+  letter-spacing: -0.3px;
+  margin: 0;
+}
+
+#applicationsContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-top: 28px;
+  max-width: 700px;
+  width: 100%;
+}
 
   .application-detail {
   display: flex;
@@ -169,27 +256,6 @@
     margin-top: 28px;
     max-width: 700px;
   }
-  
-  #addApplicationBtn {
-    background: #1a6d8a;
-    color: white;
-    margin-right: 12px;
-  }
-  
-  #addApplicationBtn:hover {
-    background: #0e5a73;
-    transform: translateY(-1px);
-  }
-  
-   #toursBtn {
-    background: #6c5ce7;
-    color: white;
-  }
-  
-  #toursBtn:hover {
-    background: #6c5ce7;
-    transform: translateY(-1px);
-  }
 
    #ClientsBtn {
     background: #00b894;
@@ -201,69 +267,54 @@
     transform: translateY(-1px);
   }
 
-  #managerPanelBtn {
-    background: #ffffff;
-    color: #1a5a6e;
-    border: 1px solid #cbdde6;
-  }
-  
-  #managerPanelBtn:hover {
-    background: #eef3f8;
-    border-color: #9bb7c6;
-  }
+
   
   @media (max-width: 600px) {
     body {
       padding: 20px 16px;
     }
-    
-    h1 {
-      font-size: 26px;
+  
+    .header-panel {
+      flex-direction: column;
+      align-items: stretch;
+      gap: 12px;
     }
-    
+  
+    .header-panel h1 {
+      font-size: 24px;
+      text-align: center;
+    }
+  
+    #addApplicationBtn {
+      width: 100%;
+      justify-content: center;
+    }
+  
+    .nav-panel {
+      flex-direction: column;
+      gap: 8px;
+    }
+  
+    .nav-btn {
+      width: 100%;
+      text-align: center;
+    }
+  
     #applicationsContainer {
       max-width: 100%;
     }
-    
-    #addApplicationBtn {
-      margin-right: 0;
-      margin-bottom: 10px;
-    }
-    
+  
     .card-actions {
       flex-wrap: wrap;
+      justify-content: stretch;
     }
-  }
   
-  .status-badge {
-    display: inline-block;
-    padding: 2px 10px;
-    border-radius: 20px;
-    font-size: 12px;
-    font-weight: 500;
-  }
-  
-  .status-new {
-    background: #fff7e5;
-    color: #b76e00;
-  }
-  
-  .status-confirmed {
-    background: #e5f7ef;
-    color: #1e7b48;
-  }
-  
-  .status-cancelled {
-    background: #feecec;
-    color: #b16262;
-  }
-  
-  .payment-paid {
-    background: #e5f7ef;
-    color: #1e7b48;
-  }
-  
-  .payment-unpaid {
-    background: #fff7e5;
-    color: #b76e00;
+    .pay-btn,
+    .confirm-btn,
+    .documents-btn,
+    .delete-btn,
+    .view-docs-btn {
+      flex: 1;
+      text-align: center;
+    }
   }
