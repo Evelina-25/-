@@ -76,7 +76,7 @@ form.addEventListener('submit', async (e) => {
   
   console.log('=== ОТПРАВКА ФОРМЫ ===');
   for (let pair of formData.entries()) {
-    if (pair[0] === 'image' && pair[1] instanceof File) {
+    if (pair[0] === 'images' && pair[1] instanceof File) {
       console.log('image:', 'Файл:', pair[1].name, 'Размер:', pair[1].size, 'Тип:', pair[1].type);
     } else {
       console.log(pair[0] + ':', pair[1]);

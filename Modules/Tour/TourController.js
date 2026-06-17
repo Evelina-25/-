@@ -20,13 +20,20 @@ class TourController {
             const tourData = { ...req.body };
             
 
-            if (req.files && req.files.length > 0) {
-                tourData.images = req.files.map(file => `/uploads/tours/${file.filename}`);
-            }
+          if (req.files && req.files.length > 0) {
 
-            if (req.file) {
-                tourData.imageUrl = `/uploads/tours/${req.file.filename}`;
+    const currentTour = await TourService.getOne(req.params.id);
+    
+    if (currentTour && currentTour.images && currentTour.images.length > 0) {
+        currentTour.images.forEach(imageUrl => {
+            const oldPath = path.join(__dirname, '..', imageUrl);
+            if (fs.existsSync(oldPath)) {
+                fs.unlinkSync(oldPath);
             }
+        });
+    }
+    tourData.images = req.files.map(file => `/uploads/tours/${file.filename}`); // ← ИСПРАВЛЕНО
+}
             
             const tour = await TourService.create(tourData);
             return res.json(tour);
@@ -52,38 +59,45 @@ class TourController {
         }
     }
 
-    async update(req, res){
-        try{
-            const tourData = { ...req.body };
+ async update(req, res){
+    try{
+        console.log('=== ОТЛАДКА ОБНОВЛЕНИЯ ТУРА ===');
+        console.log('req.body:', req.body);
+        console.log('req.files:', req.files);
+        console.log('===================================');
+        
+        const tourData = { ...req.body };
+        
+        if (req.files && req.files.length > 0) {
+
+            const currentTour = await TourService.getOne(req.params.id);
             
-          if (req.files && req.files.length > 0) {
-                // Получаем текущий тур
-                const currentTour = await TourService.getOne(req.params.id);
-                
-                // Удаляем старые файлы
-                if (currentTour && currentTour.images && currentTour.images.length > 0) {
-                    currentTour.images.forEach(imageUrl => {
-                        const oldPath = path.join(__dirname, '..', imageUrl);
-                        if (fs.existsSync(oldPath)) {
-                            fs.unlinkSync(oldPath);
-                        }
-                    });
-                }
-                tourData.imageUrl = `/uploads/tours/${req.file.filename}`;
+           
+            if (currentTour && currentTour.images && currentTour.images.length > 0) {
+                currentTour.images.forEach(imageUrl => {
+                    const oldPath = path.join(__dirname, '..', imageUrl);
+                    if (fs.existsSync(oldPath)) {
+                        fs.unlinkSync(oldPath);
+                    }
+                });
             }
             
-            const tour = await TourService.update(
-                req.params.id,
-                tourData
-            );
-            return res.json(tour);
-        }catch(e){
-            res.status(500).json(e.message);
+         
+            tourData.images = req.files.map(file => `/uploads/tours/${file.filename}`);
         }
+      
+        
+        const tour = await TourService.update(req.params.id, tourData);
+        return res.json(tour);
+    }catch(e){
+        console.error('Ошибка:', e);
+        res.status(500).json(e.message);
     }
+}
 
     async delete(req, res){
         try{
+            const tour = await TourService.getOne(req.params.id);
             if (tour && tour.images && tour.images.length > 0) {
                 tour.images.forEach(imageUrl => {
                     const imagePath = path.join(__dirname, '..', imageUrl);

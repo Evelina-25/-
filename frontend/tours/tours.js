@@ -88,12 +88,35 @@ async function fetchTours() {
               <button class="delete-btn" onclick="deleteTour('${tour._id}')">Удалить</button>
             </div>
           </div>
-          <div class="tour-images">
-          ${tour.images && tour.images.length > 0 
-              ? tour.images.map(img => `<img src="http://localhost:5000${img}" alt="${tour.name}" style="width: 100%; height: 100%; object-fit: cover; display: block;">`).join('')
-              : '<img src="https://via.placeholder.com/200x150?text=Нет+фото" alt="Нет фото" style="width: 100%; height: 100%; object-fit: cover; display: block;">'
-          }
-      </div>
+       <div class="tour-slider" data-tour-id="${tour._id}">
+    ${tour.images && tour.images.length > 0 ? `
+        <div class="slides">
+            ${tour.images.map((img, index) => `
+                <div class="slide ${index === 0 ? 'active' : ''}">
+                    <img src="http://localhost:5000${img}" alt="${tour.name}" loading="lazy">
+                </div>
+            `).join('')}
+        </div>
+        ${tour.images.length > 1 ? `
+            <button class="slider-btn prev" onclick="changeSlide('${tour._id}', -1)">‹</button>
+            <button class="slider-btn next" onclick="changeSlide('${tour._id}', 1)">›</button>
+            <div class="dots">
+                ${tour.images.map((_, index) => `
+                    <button class="dot ${index === 0 ? 'active' : ''}" onclick="goToSlide('${tour._id}', ${index})"></button>
+                `).join('')}
+            </div>
+            <div class="slide-count">1 / ${tour.images.length}</div>
+        ` : ''}
+    ` : `
+        <div class="slides">
+            <div class="slide active">
+                <div class="no-photo">
+                    <span>Нет фото</span>
+                </div>
+            </div>
+        </div>
+    `}
+</div>
         </div>
       `;
       
@@ -136,6 +159,63 @@ window.deleteTour = async (id) => {
     console.error(e);
     alert('Ошибка удаления тура');
   }
+};
+
+window.changeSlide = function(tourId, direction) {
+    const slider = document.querySelector(`.tour-slider[data-tour-id="${tourId}"]`);
+    if (!slider) return;
+    
+    const slides = slider.querySelectorAll('.slide');
+    const dots = slider.querySelectorAll('.dot');
+    const countEl = slider.querySelector('.slide-count');
+    
+    let currentIndex = 0;
+    slides.forEach((slide, index) => {
+        if (slide.classList.contains('active')) {
+            currentIndex = index;
+        }
+    });
+    
+    let newIndex = currentIndex + direction;
+    if (newIndex < 0) newIndex = slides.length - 1;
+    if (newIndex >= slides.length) newIndex = 0;
+    
+    slides.forEach((slide, index) => {
+        slide.classList.toggle('active', index === newIndex);
+    });
+    
+    if (dots.length > 0) {
+        dots.forEach((dot, index) => {
+            dot.classList.toggle('active', index === newIndex);
+        });
+    }
+    
+    if (countEl) {
+        countEl.textContent = `${newIndex + 1} / ${slides.length}`;
+    }
+};
+
+window.goToSlide = function(tourId, index) {
+    const slider = document.querySelector(`.tour-slider[data-tour-id="${tourId}"]`);
+    if (!slider) return;
+    
+    const slides = slider.querySelectorAll('.slide');
+    const dots = slider.querySelectorAll('.dot');
+    const countEl = slider.querySelector('.slide-count');
+    
+    slides.forEach((slide, i) => {
+        slide.classList.toggle('active', i === index);
+    });
+    
+    if (dots.length > 0) {
+        dots.forEach((dot, i) => {
+            dot.classList.toggle('active', i === index);
+        });
+    }
+    
+    if (countEl) {
+        countEl.textContent = `${index + 1} / ${slides.length}`;
+    }
 };
 
 fetchTours();
