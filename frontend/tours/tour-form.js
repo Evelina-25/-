@@ -3,19 +3,28 @@ const form = document.getElementById('tourForm');
 const urlParams = new URLSearchParams(window.location.search);
 const tourId = urlParams.get('id');
 
-const imageInput = document.querySelector('input[name="image"]');
+const imageInput = document.querySelector('input[name="images"]');
 const imagePreview = document.getElementById('imagePreview');
 
 imageInput.addEventListener('change', (e) => {
-  const file = e.target.files[0];
-  if (file) {
-    const reader = new FileReader();
-    reader.onload = (event) => {
-      imagePreview.innerHTML = `<img src="${event.target.result}" style="max-width: 200px; max-height: 150px; border-radius: 8px; border: 1px solid #ddd;">`;
-    };
-    reader.readAsDataURL(file);
-  } else {
-    imagePreview.innerHTML = '';
+  const files = e.target.files;
+  imagePreview.innerHTML = '';
+  
+  if (files.length > 0) {
+      Array.from(files).forEach(file => {
+          const reader = new FileReader();
+          reader.onload = (event) => {
+              const img = document.createElement('img');
+              img.src = event.target.result;
+              img.style.maxWidth = '150px';
+              img.style.maxHeight = '150px';
+              img.style.borderRadius = '8px';
+              img.style.border = '1px solid #ddd';
+              img.style.margin = '5px';
+              imagePreview.appendChild(img);
+          };
+          reader.readAsDataURL(file);
+      });
   }
 });
 
@@ -40,14 +49,24 @@ if (tourId) {
       form.availableSeats.value = data.availableSeats || '';
       form.description.value = data.description || '';
 
-if (data.imageUrl) {
-  imagePreview.innerHTML = `<img src="http://localhost:5000${data.imageUrl}" style="max-width: 200px; max-height: 150px; border-radius: 8px; border: 1px solid #ddd;">`;
-}
-    })
-    .catch(err => {
-      console.error(err);
-      alert('Ошибка загрузки тура');
-    });
+      if (data.images && data.images.length > 0) {
+        imagePreview.innerHTML = '';
+        data.images.forEach(imageUrl => {
+            const img = document.createElement('img');
+            img.src = `http://localhost:5000${imageUrl}`;
+            img.style.maxWidth = '150px';
+            img.style.maxHeight = '150px';
+            img.style.borderRadius = '8px';
+            img.style.border = '1px solid #ddd';
+            img.style.margin = '5px';
+            imagePreview.appendChild(img);
+        });
+    }
+})
+.catch(err => {
+    console.error(err);
+    alert('Ошибка загрузки тура');
+});
 }
 
 form.addEventListener('submit', async (e) => {

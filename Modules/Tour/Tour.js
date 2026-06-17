@@ -40,10 +40,10 @@ const Tour = new mongoose.Schema({
         required: true 
     },
 
-imageUrl: {
-    type: String,
-     default: ''
-     }
+    images: { 
+        type: [String], 
+        default: [] 
+    }
     });
 
 export default mongoose.model("Tour", Tour);

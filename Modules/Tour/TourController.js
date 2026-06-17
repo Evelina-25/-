@@ -19,6 +19,11 @@ class TourController {
             
             const tourData = { ...req.body };
             
+
+            if (req.files && req.files.length > 0) {
+                tourData.images = req.files.map(file => `/uploads/tours/${file.filename}`);
+            }
+
             if (req.file) {
                 tourData.imageUrl = `/uploads/tours/${req.file.filename}`;
             }
@@ -51,14 +56,18 @@ class TourController {
         try{
             const tourData = { ...req.body };
             
-            if (req.file) {
-
+          if (req.files && req.files.length > 0) {
+                // Получаем текущий тур
                 const currentTour = await TourService.getOne(req.params.id);
-                if (currentTour && currentTour.imageUrl) {
-                    const oldPath = path.join(__dirname, '..', currentTour.imageUrl);
-                    if (fs.existsSync(oldPath)) {
-                        fs.unlinkSync(oldPath);
-                    }
+                
+                // Удаляем старые файлы
+                if (currentTour && currentTour.images && currentTour.images.length > 0) {
+                    currentTour.images.forEach(imageUrl => {
+                        const oldPath = path.join(__dirname, '..', imageUrl);
+                        if (fs.existsSync(oldPath)) {
+                            fs.unlinkSync(oldPath);
+                        }
+                    });
                 }
                 tourData.imageUrl = `/uploads/tours/${req.file.filename}`;
             }
@@ -75,12 +84,13 @@ class TourController {
 
     async delete(req, res){
         try{
-            const tour = await TourService.getOne(req.params.id);
-            if (tour && tour.imageUrl) {
-                const imagePath = path.join(__dirname, '..', tour.imageUrl);
-                if (fs.existsSync(imagePath)) {
-                    fs.unlinkSync(imagePath);
-                }
+            if (tour && tour.images && tour.images.length > 0) {
+                tour.images.forEach(imageUrl => {
+                    const imagePath = path.join(__dirname, '..', imageUrl);
+                    if (fs.existsSync(imagePath)) {
+                        fs.unlinkSync(imagePath);
+                    }
+                });
             }
             
             const deletedTour = await TourService.delete(req.params.id);

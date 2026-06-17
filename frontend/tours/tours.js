@@ -88,9 +88,12 @@ async function fetchTours() {
               <button class="delete-btn" onclick="deleteTour('${tour._id}')">Удалить</button>
             </div>
           </div>
-          <div class="tour-image">
-          <img src="${tour.imageUrl ? `http://localhost:5000${tour.imageUrl}` : 'https://via.placeholder.com/200x150?text=Нет+фото'}" alt="${tour.name}">
-          </div>
+          <div class="tour-images">
+          ${tour.images && tour.images.length > 0 
+              ? tour.images.map(img => `<img src="http://localhost:5000${img}" alt="${tour.name}" style="width: 100%; height: 100%; object-fit: cover; display: block;">`).join('')
+              : '<img src="https://via.placeholder.com/200x150?text=Нет+фото" alt="Нет фото" style="width: 100%; height: 100%; object-fit: cover; display: block;">'
+          }
+      </div>
         </div>
       `;
       
