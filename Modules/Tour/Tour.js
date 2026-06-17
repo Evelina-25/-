@@ -38,8 +38,12 @@ const Tour = new mongoose.Schema({
     availableSeats: { 
         type: Number, 
         required: true 
-    }
+    },
 
-}, { collection: "tours" });
+imageUrl: {
+    type: String,
+     default: ''
+     }
+    });
 
 export default mongoose.model("Tour", Tour);

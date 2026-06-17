@@ -3,6 +3,22 @@ const form = document.getElementById('tourForm');
 const urlParams = new URLSearchParams(window.location.search);
 const tourId = urlParams.get('id');
 
+const imageInput = document.querySelector('input[name="image"]');
+const imagePreview = document.getElementById('imagePreview');
+
+imageInput.addEventListener('change', (e) => {
+  const file = e.target.files[0];
+  if (file) {
+    const reader = new FileReader();
+    reader.onload = (event) => {
+      imagePreview.innerHTML = `<img src="${event.target.result}" style="max-width: 200px; max-height: 150px; border-radius: 8px; border: 1px solid #ddd;">`;
+    };
+    reader.readAsDataURL(file);
+  } else {
+    imagePreview.innerHTML = '';
+  }
+});
+
 if (tourId) {
   document.getElementById('formTitle').innerText = 'Редактировать тур';
 
@@ -23,6 +39,10 @@ if (tourId) {
       form.price.value = data.price || '';
       form.availableSeats.value = data.availableSeats || '';
       form.description.value = data.description || '';
+
+if (data.imageUrl) {
+  imagePreview.innerHTML = `<img src="http://localhost:5000${data.imageUrl}" style="max-width: 200px; max-height: 150px; border-radius: 8px; border: 1px solid #ddd;">`;
+}
     })
     .catch(err => {
       console.error(err);
@@ -33,44 +53,38 @@ if (tourId) {
 form.addEventListener('submit', async (e) => {
   e.preventDefault();
 
-  const tourData = {
-    name: form.name.value.trim(),
-    country: form.country.value.trim(),
-    city: form.city.value.trim(),
-    startDate: form.startDate.value,
-    durationDays: Number(form.durationDays.value),
-    price: Number(form.price.value),
-    availableSeats: Number(form.availableSeats.value),
-    description: form.description.value.trim()
-  };
+  const formData = new FormData(form);
+  
+  console.log('=== ОТПРАВКА ФОРМЫ ===');
+  for (let pair of formData.entries()) {
+    if (pair[0] === 'image' && pair[1] instanceof File) {
+      console.log('image:', 'Файл:', pair[1].name, 'Размер:', pair[1].size, 'Тип:', pair[1].type);
+    } else {
+      console.log(pair[0] + ':', pair[1]);
+    }
+  }
+  console.log('=======================');
 
   try {
     let res;
+    const url = tourId 
+      ? `http://localhost:5000/api/tours/${tourId}`
+      : 'http://localhost:5000/api/tours';
+    
+    const method = tourId ? 'PUT' : 'POST';
 
-    if (tourId) {
-      res = await fetch(`http://localhost:5000/api/tours/${tourId}`, {
-        method: 'PUT',
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${token}`
-        },
-        body: JSON.stringify(tourData)
-      });
-    } else {
-      res = await fetch('http://localhost:5000/api/tours', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${token}`
-        },
-        body: JSON.stringify(tourData)
-      });
-    }
+    res = await fetch(url, {
+      method: method,
+      headers: {
+        Authorization: `Bearer ${token}`
+      },
+      body: formData
+    });
 
     const data = await res.json();
 
     if (!res.ok) {
-      alert(data);
+      alert(data.message || 'Ошибка сохранения');
       return;
     }
 

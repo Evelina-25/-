@@ -8,7 +8,7 @@
 <body>
   <h1 id="formTitle">Новый тур</h1>
 
-  <form id="tourForm">
+  <form id="tourForm" enctype="multipart/form-data">
     <input type="text" name="name" placeholder="Название тура" required><br><br>
     <input type="text" name="country" placeholder="Страна" required><br><br>
     <input type="text" name="city" placeholder="Город"><br><br>
@@ -17,6 +17,9 @@
     <input type="number" name="price" placeholder="Цена" required><br><br>
     <input type="number" name="availableSeats" placeholder="Количество мест" required><br><br>
     <textarea name="description" placeholder="Описание тура"></textarea><br><br>
+    <input type="file" name="image" accept="image/*"><br><br>
+    <div id="imagePreview"></div><br>
+    
     <div class="buttons">
     <button type="submit">Сохранить</button>
     <button type="button" onclick="window.location.href='tours.html'">Отмена</button>

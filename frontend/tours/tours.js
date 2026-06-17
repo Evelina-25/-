@@ -42,49 +42,58 @@ async function fetchTours() {
     tours.forEach(tour => {
       const card = document.createElement('div');
       card.className = 'tour-card';
+      
       card.innerHTML = `
-        <div class="tour-name">${tour.name}</div>
-        
-        <div class="tour-detail">
-          <span class="detail-label">Страна:</span>
-          <span class="detail-value">${tour.country || '—'}</span>
-        </div>
-        
-        <div class="tour-detail">
-          <span class="detail-label">Город:</span>
-          <span class="detail-value">${tour.city || '—'}</span>
-        </div>
-        
-        <div class="tour-detail">
-          <span class="detail-label">Дата начала:</span>
-          <span class="detail-value">${tour.startDate ? tour.startDate.slice(0, 10) : '—'}</span>
-        </div>
-        
-        <div class="tour-detail">
-          <span class="detail-label">Длительность:</span>
-          <span class="detail-value">${tour.durationDays} дн.</span>
-        </div>
-        
-        <div class="tour-detail">
-          <span class="detail-label">Цена:</span>
-          <span class="detail-value">${tour.price} ₽</span>
-        </div>
-        
-        <div class="tour-detail">
-          <span class="detail-label">Свободных мест:</span>
-          <span class="detail-value">${tour.availableSeats}</span>
-        </div>
-        
-        <div class="tour-detail">
-          <span class="detail-label">Описание:</span>
-          <span class="detail-value">${tour.description || '—'}</span>
-        </div>
-        
-        <div class="card-actions">
-          <button class="edit-btn" onclick="editTour('${tour._id}')">Редактировать</button>
-          <button class="delete-btn" onclick="deleteTour('${tour._id}')">Удалить</button>
+        <div class="tour-card-content">
+          <div class="tour-info">
+            <div class="tour-name">${tour.name}</div>
+            
+            <div class="tour-detail">
+              <span class="detail-label">Страна:</span>
+              <span class="detail-value">${tour.country || '—'}</span>
+            </div>
+            
+            <div class="tour-detail">
+              <span class="detail-label">Город:</span>
+              <span class="detail-value">${tour.city || '—'}</span>
+            </div>
+            
+            <div class="tour-detail">
+              <span class="detail-label">Дата начала:</span>
+              <span class="detail-value">${tour.startDate ? tour.startDate.slice(0, 10) : '—'}</span>
+            </div>
+            
+            <div class="tour-detail">
+              <span class="detail-label">Длительность:</span>
+              <span class="detail-value">${tour.durationDays} дн.</span>
+            </div>
+            
+            <div class="tour-detail">
+              <span class="detail-label">Цена:</span>
+              <span class="detail-value">${tour.price} ₽</span>
+            </div>
+            
+            <div class="tour-detail">
+              <span class="detail-label">Свободных мест:</span>
+              <span class="detail-value">${tour.availableSeats}</span>
+            </div>
+            
+            <div class="tour-detail">
+              <span class="detail-label">Описание:</span>
+              <span class="detail-value">${tour.description || '—'}</span>
+            </div>
+            
+            <div class="card-actions">
+              <button class="edit-btn" onclick="editTour('${tour._id}')">Редактировать</button>
+              <button class="delete-btn" onclick="deleteTour('${tour._id}')">Удалить</button>
+            </div>
+          </div>
+          <div class="tour-image">
+          <img src="${tour.imageUrl ? `http://localhost:5000${tour.imageUrl}` : 'https://via.placeholder.com/200x150?text=Нет+фото'}" alt="${tour.name}">
+          </div>
         </div>
       `;
+      
       toursContainer.appendChild(card);
     });
 
