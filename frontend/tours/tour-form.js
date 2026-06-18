@@ -6,22 +6,40 @@ const tourId = urlParams.get('id');
 const imageInput = document.querySelector('input[name="images"]');
 const imagePreview = document.getElementById('imagePreview');
 
+
+let deletedImages = [];
+
+let existingImages = [];
+
 imageInput.addEventListener('change', (e) => {
   const files = e.target.files;
-  imagePreview.innerHTML = '';
   
   if (files.length > 0) {
       Array.from(files).forEach(file => {
           const reader = new FileReader();
           reader.onload = (event) => {
+              const wrapper = document.createElement('div');
+              wrapper.className = 'image-preview-wrapper';
+              
               const img = document.createElement('img');
               img.src = event.target.result;
               img.style.maxWidth = '150px';
               img.style.maxHeight = '150px';
               img.style.borderRadius = '8px';
               img.style.border = '1px solid #ddd';
-              img.style.margin = '5px';
-              imagePreview.appendChild(img);
+              wrapper.appendChild(img);
+              
+              const deleteBtn = document.createElement('button');
+              deleteBtn.className = 'delete-image-btn';
+              deleteBtn.innerHTML = '×';
+              deleteBtn.addEventListener('click', (e) => {
+                  e.preventDefault();
+                  e.stopPropagation();
+                  wrapper.remove();
+              });
+              wrapper.appendChild(deleteBtn);
+              
+              imagePreview.appendChild(wrapper);
           };
           reader.readAsDataURL(file);
       });
@@ -50,16 +68,33 @@ if (tourId) {
       form.description.value = data.description || '';
 
       if (data.images && data.images.length > 0) {
+        existingImages = data.images;
         imagePreview.innerHTML = '';
-        data.images.forEach(imageUrl => {
+        data.images.forEach((imageUrl) => {
+            const wrapper = document.createElement('div');
+            wrapper.className = 'image-preview-wrapper';
+            
             const img = document.createElement('img');
             img.src = `http://localhost:5000${imageUrl}`;
-            img.style.maxWidth = '150px';
-            img.style.maxHeight = '150px';
-            img.style.borderRadius = '8px';
-            img.style.border = '1px solid #ddd';
-            img.style.margin = '5px';
-            imagePreview.appendChild(img);
+            wrapper.appendChild(img);
+            
+            const deleteBtn = document.createElement('button');
+            deleteBtn.className = 'delete-image-btn';
+            deleteBtn.innerHTML = '×';
+            deleteBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                
+                // Находим индекс по URL
+                const index = existingImages.indexOf(imageUrl);
+                if (index !== -1) {
+                    deletedImages.push(imageUrl);
+                    existingImages.splice(index, 1);
+                }
+                wrapper.remove();
+            });
+            wrapper.appendChild(deleteBtn);
+            imagePreview.appendChild(wrapper);
         });
     }
 })
@@ -84,6 +119,9 @@ form.addEventListener('submit', async (e) => {
   }
   console.log('=======================');
 
+if (deletedImages.length > 0) {
+  formData.append('deletedImages', JSON.stringify(deletedImages));
+}
   try {
     let res;
     const url = tourId 

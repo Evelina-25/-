@@ -10,8 +10,8 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const PORT = 5000;
-//const uri = "mongodb://admin:mongo721887@192.168.0.62/travel?authSource=admin";
-const uri = "mongodb://localhost:27017/travel_agency";
+const uri = "mongodb://admin:mongo721887@192.168.0.62/travel?authSource=admin";
+//const uri = "mongodb://localhost:27017/travel_agency";
 const frontendPath = path.join(path.resolve(), 'frontend');
 console.log("Frontend path:", frontendPath);
 const app = express();

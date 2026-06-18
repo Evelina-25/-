@@ -96,6 +96,43 @@
     background: #e6f0f5;
     transform: translateY(-1px);
   }
+
+  .image-preview-wrapper {
+    position: relative;
+    display: inline-block;
+    margin: 5px;
+}
+
+.image-preview-wrapper img {
+    max-width: 150px;
+    max-height: 150px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    display: block;
+}
+
+.delete-image-btn {
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    background: #ff4444;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 25px;
+    height: 25px;
+    font-size: 14px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+.delete-image-btn:hover {
+    background: #cc0000;
+    transform: scale(1.1);
+}
   
   @media (max-width: 600px) {
     body {
